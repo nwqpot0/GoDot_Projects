@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cn44wdw78g02p"]
+
+[ext_resource type="Script" uid="uid://se0tp4yuyhgy" path="res://Sword.gd" id="1_74bdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
+size = Vector2(20, 27.139751)
+
+[node name="Sword" type="Node2D" unique_id=1573368615]
+script = ExtResource("1_74bdg")
+
+[node name="Attack1_Timer" type="Timer" parent="." unique_id=924785403]
+wait_time = 0.3
+one_shot = true
+
+[node name="Attack2_Timer" type="Timer" parent="." unique_id=159882012]
+wait_time = 1.2999999999999998
+one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=343564219]
+scale = Vector2(0.432238, 0.28254032)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1952274246]
+position = Vector2(101.796, 8.72)
+scale = Vector2(7.5, 7.5)
+shape = SubResource("RectangleShape2D_74bdg")
+
+[connection signal="timeout" from="Attack1_Timer" to="." method="_on_attack_1_timer_timeout"]
+[connection signal="timeout" from="Attack2_Timer" to="." method="_on_attack_2_timer_timeout"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

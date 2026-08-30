@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://doa3k3ynvl45m"]
+
+[ext_resource type="Script" uid="uid://b6tgohal2kvgk" path="res://enemy_1_projectile.gd" id="1_oknd3"]
+[ext_resource type="Texture2D" uid="uid://oh1eq0lxhilg" path="res://Assets/Tiny Swords/Purple Archer/Arrow.png" id="2_rhs3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb4cc"]
+atlas = ExtResource("2_rhs3y")
+region = Rect2(10, 26, 43, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybbw1"]
+size = Vector2(20, 16.66668)
+
+[node name="Enemy1Projectile" type="Area2D" unique_id=533289081]
+collision_layer = 2
+script = ExtResource("1_oknd3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=239190951]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -20.0
+offset_right = 21.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_qb4cc")
+stretch_mode = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1157562693]
+scale = Vector2(2.1999993, 0.71999943)
+shape = SubResource("RectangleShape2D_ybbw1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

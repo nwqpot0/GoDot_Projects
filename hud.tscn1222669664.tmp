@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d67emkh2s718"]
+
+[ext_resource type="Script" uid="uid://6kocr285i3td" path="res://hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://dod6e6d4t6w6n" path="res://Pixel UI pack 3/04.png" id="2_64ctp"]
+[ext_resource type="Texture2D" uid="uid://delthpuv4k4ih" path="res://Mxwell.jpg" id="3_8sq4i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3wyy"]
+atlas = ExtResource("2_64ctp")
+region = Rect2(0, 3, 48, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1idqp"]
+atlas = ExtResource("2_64ctp")
+region = Rect2(51, 54, 42, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kecoi"]
+atlas = ExtResource("3_8sq4i")
+region = Rect2(0, 0, 191, 207)
+
+[node name="HUD" type="CanvasLayer" unique_id=1532643779]
+script = ExtResource("1_37p78")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=415158414]
+offset_right = 340.0
+offset_bottom = 80.0
+scale = Vector2(1.1084605, 0.7522504)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1735246165]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HealthBarMarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer" unique_id=2080514602]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+
+[node name="HealthBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/HealthBarMarginContainer" unique_id=1343304335]
+layout_mode = 2
+value = 100.0
+texture_over = SubResource("AtlasTexture_a3wyy")
+texture_progress = SubResource("AtlasTexture_1idqp")
+texture_progress_offset = Vector2(3, 3)
+
+[node name="IconContainer" type="MarginContainer" parent="PanelContainer/MarginContainer" unique_id=1193315862]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 289
+theme_override_constants/margin_bottom = 6
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/IconContainer" unique_id=1923805017]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kecoi")
+expand_mode = 1
