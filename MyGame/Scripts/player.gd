@@ -8,25 +8,35 @@ signal health_changed(new_health: float)
 @onready var map := $"../Background"
 var health := 0.0
 @export var max_health := 300.0
-var direction := Vector2(0.0, 0.0)
+var move_direction := Vector2(0.0, 0.0)
 var current_weapon : Node2D
 var is_operating := false
 
 # Dash
-@onready var dash_cd_timer := $DashCooldown
-@export var dash_range := 150.0
+@onready var dash_timer: Timer = $DashTimer
+@onready var dash_cooldown: Timer = $DashCooldown
+@export var dash_duration := 2.0
+@export var dash_speed_multi := 2.5
+@export var dash_cd = 0.5
 var dash_ready := true
+var is_dashing := false
 
 func _ready():
 	#print("PLAYER SCRIPT IS RUNNING")
 	health = max_health
 
 func _physics_process(delta):
-	var horizontal_direction = Input.get_axis("move_left", "move_right")
-	var vertical_direction = Input.get_axis("move_up", "move_down")
-	direction = Vector2(horizontal_direction, vertical_direction).normalized()
-	velocity.x = horizontal_direction * speed
-	velocity.y = vertical_direction * speed
+	# dash过程种无法通过按键向其他方向移动
+	if (is_dashing):
+		velocity = move_direction * speed * dash_speed_multi
+	else:
+		var horizontal_direction = Input.get_axis("move_left", "move_right")
+		var vertical_direction = Input.get_axis("move_up", "move_down")
+		move_direction = Vector2(horizontal_direction, vertical_direction).normalized()
+		velocity.x = horizontal_direction * speed
+		velocity.y = vertical_direction * speed
+	
+
 	move_animation()
 	move_and_slide()
 	
@@ -46,8 +56,8 @@ func move_animation():
 	if is_operating:
 		return 
 	$AnimatedSprite2D.flip_h = global_position.direction_to(get_global_mouse_position()).x < 0
-	if direction:
-		$AnimatedSprite2D.flip_h = direction.x < 0
+	if move_direction:
+		$AnimatedSprite2D.flip_h = move_direction.x < 0
 		$AnimatedSprite2D.play("Run")
 	else:
 		$AnimatedSprite2D.play("Idle")
@@ -66,12 +76,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("attack_2"):
 		#print("Unhandled")
 		attack(2)
-	if Input.is_action_pressed("dash") && dash_ready:
-		dash_ready = false
-		# 闪现到鼠标位置或者该方向最远距离
-		#print((mouse_pos - global_position).normalized() * dash_range)
-		global_position += global_position.direction_to(get_global_mouse_position()) * dash_range
-		dash_cd_timer.start()
+	if Input.is_action_pressed("dash"):
+		start_dash()
 		
 
 # the implementation limits the attack speed to be the same as 
@@ -85,6 +91,23 @@ func attack(attack_index: int):
 		await $AnimatedSprite2D.animation_finished
 		is_operating = false
 		current_weapon.end_attack()
+
+func start_dash():
+	if (is_dashing \
+	|| not dash_ready \
+	|| move_direction == Vector2.ZERO):
+		return 
+		
+	dash_timer.wait_time = dash_duration
+	dash_timer.start()
+	is_dashing = true
+
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
+	dash_ready = false
+	
+	dash_cooldown.wait_time = dash_cd
+	dash_cooldown.start()
 
 func _on_dash_cooldown_timeout() -> void:
 	dash_ready = true

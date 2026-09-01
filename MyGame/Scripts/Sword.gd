@@ -3,12 +3,15 @@ extends Node2D
 
 var player: Player
 var attack_ready = [true, true]
+var is_attacking := [false, false]
 
 func attack(index: int):
 	if (not attack_ready[index - 1]):
 		return 
+		
 	# 这个武器(这样的攻击方式)攻击结束后进入冷却
 	attack_ready[index - 1] = false
+	is_attacking[index - 1] = true
 	# attack timer start
 	get_child(index - 1).start()
 
@@ -39,5 +42,5 @@ func _on_attack_2_timer_timeout() -> void:
 func _on_attack_area_area_entered(target: Area2D) -> void:
 	if target.is_in_group("enemy"):
 		target.take_damage()
-	elif target.is_in_group("projectile_enemy"):
+	elif target.is_in_group("projectile_enemy") && is_attacking[0]:
 		deflect(target)
