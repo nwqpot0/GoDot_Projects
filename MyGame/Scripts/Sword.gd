@@ -9,11 +9,17 @@ func attack(index: int):
 		return 
 	# 这个武器(这样的攻击方式)攻击结束后进入冷却
 	attack_ready[index - 1] = false
+	# attack timer start
 	get_child(index - 1).start()
 
 	#print("Sword attack ", index, "!")
 	# 进行攻击判定
 	$AttackArea.monitoring = true
+
+func deflect(target):
+	target.add_to_group("projectile_friendly")
+	target.remove_from_group("projectile_enemy")
+	target.direction *= -1
 	
 func end_attack():
 	$AttackArea.monitoring = false
@@ -30,6 +36,8 @@ func _on_attack_2_timer_timeout() -> void:
 	#print("Attack 2 Cooldown Terminated!")
 	attack_ready[1] = true
 
-func _on_attack_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		print("Hit enemy: ", area)	
+func _on_attack_area_area_entered(target: Area2D) -> void:
+	if target.is_in_group("enemy"):
+		target.take_damage()
+	elif target.is_in_group("projectile_enemy"):
+		deflect(target)

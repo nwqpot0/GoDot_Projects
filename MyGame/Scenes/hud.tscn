@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://d67emkh2s718"]
 
-[ext_resource type="Script" uid="uid://6kocr285i3td" path="res://hud.gd" id="1_37p78"]
+[ext_resource type="Script" uid="uid://6kocr285i3td" path="res://Scripts/hud.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://bjhiq20y5e5il" path="res://Assets/Tiny Swords/Avatars_01.png" id="2_61f8s"]
 [ext_resource type="Texture2D" uid="uid://dqa71ymciqp0d" path="res://Assets/Tiny Swords/Bars/BigBar_Fill.png" id="3_61f8s"]
 [ext_resource type="Texture2D" uid="uid://dtof6f21l7ox4" path="res://Assets/Tiny Swords/Bars/BigBar_Base_merged.png" id="3_g10ll"]
-[ext_resource type="Script" uid="uid://cppbd1lwllob7" path="res://items_hotbar.gd" id="4_1xsix"]
-[ext_resource type="StyleBox" uid="uid://b51iewmo0cbow" path="res://item_slot_normal.tres" id="4_640wx"]
-[ext_resource type="Script" uid="uid://br527242w8s03" path="res://item_slot.gd" id="5_a2258"]
-[ext_resource type="PackedScene" uid="uid://cn44wdw78g02p" path="res://sword.tscn" id="7_rftc2"]
+[ext_resource type="Script" uid="uid://cppbd1lwllob7" path="res://Scripts/items_hotbar.gd" id="4_1xsix"]
+[ext_resource type="StyleBox" uid="uid://b51iewmo0cbow" path="res://tres/item_slot_normal.tres" id="4_640wx"]
+[ext_resource type="Script" uid="uid://br527242w8s03" path="res://Scripts/item_slot.gd" id="5_a2258"]
+[ext_resource type="PackedScene" uid="uid://cn44wdw78g02p" path="res://Scenes/sword.tscn" id="7_rftc2"]
 [ext_resource type="Texture2D" uid="uid://q1pexafktmr7" path="res://Assets/Tiny Swords/Swords Whole.png" id="8_g10ll"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a2258"]

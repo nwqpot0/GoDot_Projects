@@ -1,7 +1,10 @@
 extends Area2D
 
+class_name Enemy
+
 @export var projectile_scene: PackedScene
-@export var lifetime := 2
+#@export var lifetime := 2
+@export var health := 30.0
 @export var speed := 80.0
 var is_attacking := false
 var player
@@ -36,15 +39,20 @@ func _process(delta: float):
 	$AnimatedSprite2D.flip_h = direction.x < 0
 	global_position += direction * speed * delta
 
-func _ready():
+#func _ready():
 	#print("enemy spawned\n")
-	await get_tree().create_timer(lifetime).timeout
-	queue_free()
+	#await get_tree().create_timer(lifetime).timeout
+	#queue_free()
+
+func take_damage(damage := 10.0):
+	health -= damage
+	print("Health remaining: ", health)
+	if (health <= 0):
+		queue_free()
 	
-func _on_body_entered(body: Node2D) -> void:
-	return 
+#func _on_body_entered(body: Node2D) -> void:
 	#print(body.name)
 	#if (body is Player):
 		##print("Enemy Touched Player!")
 		#body.take_damage(10)
-		#queue_free()
+		#

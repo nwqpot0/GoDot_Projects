@@ -11,8 +11,11 @@ var health := 0.0
 var direction := Vector2(0.0, 0.0)
 var current_weapon : Node2D
 var is_operating := false
+
+# Dash
+@onready var dash_cd_timer := $DashCooldown
+@export var dash_range := 150.0
 var dash_ready := true
-@export var dash_range := 100.0
 
 func _ready():
 	#print("PLAYER SCRIPT IS RUNNING")
@@ -68,7 +71,8 @@ func _unhandled_input(event):
 		# 闪现到鼠标位置或者该方向最远距离
 		#print((mouse_pos - global_position).normalized() * dash_range)
 		global_position += global_position.direction_to(get_global_mouse_position()) * dash_range
-		$Dash_Timer.start()
+		dash_cd_timer.start()
+		
 
 # the implementation limits the attack speed to be the same as 
 # attack animation at the quickest
@@ -82,6 +86,5 @@ func attack(attack_index: int):
 		is_operating = false
 		current_weapon.end_attack()
 
-
-func _on_dash_timer_timeout() -> void:
+func _on_dash_cooldown_timeout() -> void:
 	dash_ready = true

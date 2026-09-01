@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bxmi5khvq3dhn"]
 
-[ext_resource type="Script" uid="uid://bak5carq6v5f1" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://qnag7f7e738w" path="res://player_camera.gd" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://bak5carq6v5f1" path="res://Scripts/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://qnag7f7e738w" path="res://Scripts/player_camera.gd" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://u3sd12p1ucbv" path="res://Assets/Tiny Swords/Blue Warrior/Warrior_Attack1.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://qvas828cbp1l" path="res://Assets/Tiny Swords/Blue Warrior/Warrior_Idle.png" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://b46au2a66o8ie" path="res://Assets/Tiny Swords/Blue Warrior/Warrior_Run.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://d0c2ingh7h450" path="res://Assets/Tiny Swords/Blue Warrior/Warrior_Attack2.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://ckro2rbfaanmj" path="res://Assets/Tiny Swords/Blue Warrior/Warrior_Guard.png" id="5_dw050"]
-[ext_resource type="Script" uid="uid://cbwsoiuenkctq" path="res://weapon_holder.gd" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://cbwsoiuenkctq" path="res://Scripts/weapon_holder.gd" id="7_1jxqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nq6cw"]
 size = Vector2(6.5173306, 12.584289)
@@ -257,7 +257,7 @@ speed_scale = 0.2
 [node name="WeaponHolder" type="Node2D" parent="." unique_id=1031426068]
 script = ExtResource("7_1jxqw")
 
-[node name="Dash_Timer" type="Timer" parent="." unique_id=743722375]
+[node name="DashCooldown" type="Timer" parent="." unique_id=817446748]
 one_shot = true
 
-[connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

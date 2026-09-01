@@ -20,7 +20,14 @@ func _process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	var player := body as Player
-	if (player != null):
+	if (player != null && is_in_group("projectile_enemy")):
 		#print("Hits Player!")
-		body.take_damage(40)
+		player.take_damage(40)
+		queue_free()
+
+func _on_area_entered(area: Area2D) -> void:
+	var enemy := area as Enemy
+	print(area.name, ' ', area.get_groups())
+	if (enemy != null && is_in_group("projectile_friendly")):
+		enemy.take_damage(30)
 		queue_free()
