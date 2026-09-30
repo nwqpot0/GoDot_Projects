@@ -84,13 +84,14 @@ func _unhandled_input(event):
 # attack animation at the quickest
 func attack(attack_index: int):
 	if (current_weapon && not is_operating):
-		is_operating = true
-		# 动画过程中就应该进行攻击判定了
-		current_weapon.attack(attack_index)
-		$AnimatedSprite2D.play("Attack" + str(attack_index))
-		await $AnimatedSprite2D.animation_finished
-		is_operating = false
-		current_weapon.end_attack()
+		# 如果可以攻击
+		if current_weapon.attack(attack_index):
+			is_operating = true
+			# 动画过程中就应该进行攻击判定了
+			$AnimatedSprite2D.play("Attack" + str(attack_index))	
+			await $AnimatedSprite2D.animation_finished
+			current_weapon.end_attack()
+			is_operating = false
 
 func start_dash():
 	if (is_dashing \

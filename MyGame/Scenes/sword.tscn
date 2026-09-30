@@ -13,7 +13,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Attack2_Timer" type="Timer" parent="." unique_id=159882012]
-wait_time = 1.2999999999999998
+wait_time = 1.2
 one_shot = true
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=343564219]

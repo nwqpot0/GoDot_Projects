@@ -2,45 +2,102 @@ class_name Sword
 extends Node2D
 
 var player: Player
-var attack_ready = [true, true]
-var is_attacking := [false, false]
 
-func attack(index: int):
-	if (not attack_ready[index - 1]):
-		return 
-		
-	# 这个武器(这样的攻击方式)攻击结束后进入冷却
-	attack_ready[index - 1] = false
-	is_attacking[index - 1] = true
-	# attack timer start
-	get_child(index - 1).start()
+enum {
+	NONE,
+	ATTACK1,
+	ATTACK2
+}
 
-	#print("Sword attack ", index, "!")
-	# 进行攻击判定
+var attack_ready := [false, true, true]
+var is_attacking := [false, false, false]
+var attack_info := [null, null, null]
+
+var current_attack = NONE
+
+
+func _ready() -> void:
+	attack_info = [
+		null,
+		Attack.new(50.0),
+		Attack.new(
+			25.0,
+			KnockbackEffect.new(150.0)
+		)
+	]
+
+	$AttackArea.monitoring = false
+
+
+func attack(index: int) -> bool:
+	if not attack_ready[index]:
+		return false
+
+	current_attack = index
+	attack_ready[index] = false
+	is_attacking[index] = true
+
 	$AttackArea.monitoring = true
+
+	return true
+
+
+func _on_attack_area_area_entered(target: Area2D) -> void:
+	if current_attack == NONE:
+		return
+
+	if target.is_in_group("enemy"):
+
+		if current_attack == ATTACK2:
+			attack_info[current_attack].effect.set_normalized_direction(
+				get_global_mouse_position() - global_position
+			)
+
+		target.take_damage(
+			attack_info[current_attack]
+		)
+
+	elif (
+		target.is_in_group("projectile_enemy")
+		and current_attack == ATTACK1
+	):
+		deflect(target)
+
 
 func deflect(target):
 	target.add_to_group("projectile_friendly")
 	target.remove_from_group("projectile_enemy")
 	target.direction *= -1
-	
+
+
 func end_attack():
+	if current_attack == NONE:
+		return
+
 	$AttackArea.monitoring = false
+
+	var finished_attack = current_attack
+
+	is_attacking[finished_attack] = false
+
+	# ATTACK1 = 1 → child 0
+	# ATTACK2 = 2 → child 1
+	match finished_attack:
+		ATTACK1:
+			$Attack1_Timer.start()
+		ATTACK2:
+			$Attack2_Timer.start()
+
+	current_attack = NONE
+
 
 func setup(player_reference):
 	player = player_reference
-	print(player)
+
 
 func _on_attack_1_timer_timeout() -> void:
-	#print("Attack 1 Cooldown Terminated!")
-	attack_ready[0] = true
+	attack_ready[ATTACK1] = true
+
 
 func _on_attack_2_timer_timeout() -> void:
-	#print("Attack 2 Cooldown Terminated!")
-	attack_ready[1] = true
-
-func _on_attack_area_area_entered(target: Area2D) -> void:
-	if target.is_in_group("enemy"):
-		target.take_damage()
-	elif target.is_in_group("projectile_enemy") && is_attacking[0]:
-		deflect(target)
+	attack_ready[ATTACK2] = true

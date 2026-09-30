@@ -27,7 +27,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var enemy := area as Enemy
-	print(area.name, ' ', area.get_groups())
+	#print(area.name, ' ', area.get_groups())
 	if (enemy != null && is_in_group("projectile_friendly")):
-		enemy.take_damage(30)
+		enemy.take_damage(Attack.new(15.0))
 		queue_free()

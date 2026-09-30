@@ -44,11 +44,15 @@ func _process(delta: float):
 	#await get_tree().create_timer(lifetime).timeout
 	#queue_free()
 
-func take_damage(damage := 10.0):
-	health -= damage
-	print("Health remaining: ", health)
-	if (health <= 0):
-		queue_free()
+func take_damage(attack: Attack):
+	health -= attack.damage
+	if attack.effect != null:
+		attack.effect.apply(self)
+	if health <= 0:
+		die()
+
+func die():
+	queue_free()
 	
 #func _on_body_entered(body: Node2D) -> void:
 	#print(body.name)

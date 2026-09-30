@@ -2,7 +2,7 @@ extends Panel
 
 
 @onready var normal_style = preload("res://tres/item_slot_normal.tres")
-@onready var highlight_style = preload("res://tres/item_slot_normal.tres")
+@onready var highlight_style = preload("res://tres/item_slot_highlight.tres")
 @export var item_scene : PackedScene
 
 var selected := false
