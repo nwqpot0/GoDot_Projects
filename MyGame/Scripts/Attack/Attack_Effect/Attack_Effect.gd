@@ -1,5 +1,5 @@
 class_name AttackEffect
 extends Resource
 
-func apply(target: Node) -> void:
+func apply(context: AttackContext) -> void:
 	pass

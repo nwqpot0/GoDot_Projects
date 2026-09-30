@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c5itp7sk3gcf2" path="res://Scripts/enemy.gd" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://doa3k3ynvl45m" path="res://Scenes/enemy_archer_projectile.tscn" id="2_qi2p4"]
+[ext_resource type="Shader" uid="uid://dbg0wqkey5ki4" path="res://Shaders/enemy_archer.gdshader" id="3_mkgqh"]
 [ext_resource type="Texture2D" uid="uid://064561gdl4rq" path="res://Assets/Tiny Swords/Purple Archer/Archer_Shoot.png" id="4_epg4t"]
 [ext_resource type="Texture2D" uid="uid://d3h2imq1kmmfr" path="res://Assets/Tiny Swords/Purple Archer/Archer_Run.png" id="5_3yqyl"]
+[ext_resource type="Script" uid="uid://b5pe5f1utbm8s" path="res://Scripts/hurtbox.gd" id="6_oe3hq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0hq"]
-size = Vector2(40, 64)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gr8i"]
+shader = ExtResource("3_mkgqh")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
 atlas = ExtResource("4_epg4t")
@@ -105,24 +109,39 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Enemy_Archer" type="Area2D" unique_id=1921929776 groups=["enemy"]]
-collision_layer = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0hq"]
+size = Vector2(40, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybbw1"]
+size = Vector2(25.000017, 64)
+
+[node name="Enemy_Archer" type="CharacterBody2D" unique_id=1292454228]
+collision_mask = 2
 script = ExtResource("1_4gyqm")
 projectile_scene = ExtResource("2_qi2p4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=492829026]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_bq0hq")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=824384896]
 wait_time = 2.0
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=649871794]
+material = SubResource("ShaderMaterial_7gr8i")
 sprite_frames = SubResource("SpriteFrames_ybbw1")
 animation = &"Attack"
 autoplay = "Run"
 speed_scale = 0.1
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=481111034 groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("6_oe3hq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=492829026]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_bq0hq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960787954]
+position = Vector2(-4.0000095, 0)
+scale = Vector2(1.5999982, 1)
+shape = SubResource("RectangleShape2D_ybbw1")
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

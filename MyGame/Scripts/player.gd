@@ -71,7 +71,7 @@ func equip_weapon(weapon_scene: PackedScene):
 		#print("Input")	
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("attack_1"):
+	if Input.is_action_pressed("attack_1"):
 		#print("Unhandled")
 		attack(1)
 	if event.is_action_pressed("attack_2"):
