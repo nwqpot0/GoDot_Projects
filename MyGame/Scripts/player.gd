@@ -45,7 +45,8 @@ func _physics_process(delta):
 	
 	# 武器范围直接根据负责当前拿着武器的节点来旋转
 	var facing = global_position.direction_to(get_global_mouse_position())
-	$WeaponHolder.rotation = facing.angle()
+	if (not (is_dashing || is_operating)):
+		$WeaponHolder.rotation = facing.angle()
 
 func take_damage(damage):
 	health -= damage
