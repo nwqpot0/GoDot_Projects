@@ -9,7 +9,7 @@ size = Vector2(20, 27.139751)
 script = ExtResource("1_74bdg")
 
 [node name="Attack1_Timer" type="Timer" parent="." unique_id=924785403]
-wait_time = 0.3
+wait_time = 0.001
 one_shot = true
 
 [node name="Attack2_Timer" type="Timer" parent="." unique_id=159882012]
