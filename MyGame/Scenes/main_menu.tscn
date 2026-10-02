@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
-start_scene_path = "uid://1xl8qqqtl0os"
+start_scene_path = "uid://dyw5p7fnpk8e8"
 
 [node name="Background" type="ColorRect" parent="." unique_id=2033844116]
 layout_mode = 1
