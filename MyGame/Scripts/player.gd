@@ -45,7 +45,8 @@ func _physics_process(delta):
 	
 	# 武器范围直接根据负责当前拿着武器的节点来旋转
 	var facing = global_position.direction_to(get_global_mouse_position())
-	$WeaponHolder.rotation = facing.angle()
+	if (not (is_dashing || is_operating)):
+		$WeaponHolder.rotation = facing.angle()
 
 func take_damage(damage):
 	health -= damage
@@ -70,7 +71,7 @@ func equip_weapon(weapon_scene: PackedScene):
 		#print("Input")	
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("attack_1"):
+	if Input.is_action_pressed("attack_1"):
 		#print("Unhandled")
 		attack(1)
 	if event.is_action_pressed("attack_2"):
@@ -84,13 +85,14 @@ func _unhandled_input(event):
 # attack animation at the quickest
 func attack(attack_index: int):
 	if (current_weapon && not is_operating):
-		is_operating = true
-		# 动画过程中就应该进行攻击判定了
-		current_weapon.attack(attack_index)
-		$AnimatedSprite2D.play("Attack" + str(attack_index))
-		await $AnimatedSprite2D.animation_finished
-		is_operating = false
-		current_weapon.end_attack()
+		# 如果可以攻击
+		if current_weapon.attack(attack_index):
+			is_operating = true
+			# 动画过程中就应该进行攻击判定了
+			$AnimatedSprite2D.play("Attack" + str(attack_index))	
+			await $AnimatedSprite2D.animation_finished
+			current_weapon.end_attack()
+			is_operating = false
 
 func start_dash():
 	if (is_dashing \

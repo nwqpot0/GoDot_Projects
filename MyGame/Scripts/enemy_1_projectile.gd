@@ -25,9 +25,10 @@ func _on_body_entered(body: Node2D) -> void:
 		player.take_damage(40)
 		queue_free()
 
-func _on_area_entered(area: Area2D) -> void:
-	var enemy := area as Enemy
-	print(area.name, ' ', area.get_groups())
-	if (enemy != null && is_in_group("projectile_friendly")):
-		enemy.take_damage(30)
-		queue_free()
+func _on_area_entered(hitbox: Area2D) -> void:
+	if hitbox is Hurtbox:
+		var enemy : CharacterBody2D = hitbox.entity
+		#print(area.name, ' ', area.get_groups())
+		if (enemy != null && is_in_group("projectile_friendly")):
+			enemy.take_damage(15.0)
+			queue_free()

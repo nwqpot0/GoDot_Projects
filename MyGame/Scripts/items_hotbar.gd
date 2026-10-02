@@ -7,6 +7,7 @@ var player: Player
 func setup(player_reference):
 	player = player_reference
 	#print(player)
+	#print("items_hotbar setup called")
 	select_slot(0)
 
 func _unhandled_input(event):

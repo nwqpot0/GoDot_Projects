@@ -141,7 +141,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"Attack1",
-"speed": 70.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -158,7 +158,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"Attack2",
-"speed": 70.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -181,7 +181,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Guard",
-"speed": 60.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -210,7 +210,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Idle",
-"speed": 30.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -233,10 +233,11 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Run",
-"speed": 60.0
+"speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=2029719141]
+[node name="Player" type="CharacterBody2D" unique_id=1683424370]
+collision_mask = 2
 script = ExtResource("1_4flbx")
 dash_duration = 0.2
 dash_speed_multi = 4.0
@@ -253,8 +254,8 @@ script = ExtResource("2_onrkg")
 sprite_frames = SubResource("SpriteFrames_ybbw1")
 animation = &"Guard"
 autoplay = "Idle"
-frame_progress = 0.2491072
-speed_scale = 0.2
+frame = 5
+frame_progress = 0.5255782
 
 [node name="WeaponHolder" type="Node2D" parent="." unique_id=1031426068]
 script = ExtResource("7_1jxqw")
