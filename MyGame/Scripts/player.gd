@@ -22,10 +22,16 @@ var dash_ready := true
 var is_dashing := false
 
 func _ready():
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	platform_floor_layers = 0
+	platform_wall_layers = 0
+	
 	#print("PLAYER SCRIPT IS RUNNING")
 	health = max_health
+	
 
 func _physics_process(delta):
+	
 	# dash过程种无法通过按键向其他方向移动
 	if (is_dashing):
 		velocity = move_direction * speed * dash_speed_multi
@@ -33,8 +39,7 @@ func _physics_process(delta):
 		var horizontal_direction = Input.get_axis("move_left", "move_right")
 		var vertical_direction = Input.get_axis("move_up", "move_down")
 		move_direction = Vector2(horizontal_direction, vertical_direction).normalized()
-		velocity.x = horizontal_direction * speed
-		velocity.y = vertical_direction * speed
+		velocity = move_direction * speed
 	
 
 	move_animation()

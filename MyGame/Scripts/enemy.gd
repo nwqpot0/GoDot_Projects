@@ -12,7 +12,7 @@ extends CharacterBody2D
 # 击退撞击参数
 @export var impact_damage: float = 10.0
 @export var impact_min_speed: float = 50.0
-@export_range(0.0, 1.0) var impact_transfer: float = 0.6
+@export_range(0.0, 3.0) var impact_transfer: float = 0.6
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
@@ -35,6 +35,10 @@ var blink_tween: Tween
 
 
 func _ready() -> void:
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	platform_floor_layers = 0
+	platform_wall_layers = 0
+	
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 
@@ -262,6 +266,7 @@ func receive_knockback_impact(
 		return
 
 	# false：对方会被推开，但不会继续传播撞击伤害。
+	# true : 继续传播
 	# 先施加击退，使致死撞击也能让尸体滑动。
-	knockback(direction, force, false)
+	knockback(direction, force, true)
 	take_damage(damage)
