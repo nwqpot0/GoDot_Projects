@@ -69,8 +69,9 @@ func attack(index: int) -> bool:
 
 func _on_attack_area_area_entered(hitbox: Area2D) -> void:
 	#print(hitbox)
-	if current_attack == NONE:
+	if current_attack == NONE || hitbox in hit_targets:
 		return
+	hit_targets.append(hitbox)
 		
 	if hitbox.is_in_group("enemy"):
 		#print("Enemy Hit!")

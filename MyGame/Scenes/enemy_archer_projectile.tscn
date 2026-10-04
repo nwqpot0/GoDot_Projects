@@ -12,7 +12,7 @@ size = Vector2(20, 16.66668)
 
 [node name="Enemy1Projectile" type="Area2D" unique_id=533289081 groups=["projectile_enemy"]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 255
 script = ExtResource("1_oknd3")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=239190951]

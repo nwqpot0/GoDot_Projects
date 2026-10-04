@@ -116,12 +116,12 @@ size = Vector2(40, 64)
 size = Vector2(25.000017, 64)
 
 [node name="Enemy_Archer" type="CharacterBody2D" unique_id=1292454228]
-collision_layer = 2
-collision_mask = 3
 script = ExtResource("1_4gyqm")
 projectile_scene = ExtResource("2_qi2p4")
-knockback_decay = 400.0
-impact_transfer = 0.45
+knockback_decay = 1000.0
+impact_damage = 20.0
+impact_min_speed = 20.0
+impact_transfer = 0.8
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=824384896]
 wait_time = 2.0
@@ -143,6 +143,8 @@ position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_bq0hq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1960787954]
+light_mask = 0
+visibility_layer = 0
 position = Vector2(-4.0000095, 0)
 scale = Vector2(1.5999982, 1)
 shape = SubResource("RectangleShape2D_ybbw1")

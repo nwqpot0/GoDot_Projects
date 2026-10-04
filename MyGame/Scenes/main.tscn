@@ -19,6 +19,7 @@ color = Color(0.83889705, 0.83889705, 0.838897, 1)
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1602950360]
 script = ExtResource("2_6bp64")
 enemy_scene = ExtResource("3_344ge")
+spawn_rate_multiplier = 0.05
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1467831490]
 

@@ -52,7 +52,22 @@ func setup(
 	player = player_reference
 	map = map_reference
 
+func clamp_to_map_bounds() -> void:
+	if map == null:
+		return
 
+	global_position.x = clamp(
+		global_position.x,
+		0.0,
+		map.size.x
+	)
+
+	global_position.y = clamp(
+		global_position.y,
+		0.0,
+		map.size.y
+	)
+	
 func _physics_process(delta: float) -> void:
 	# 先处理击退，让尸体也能继续滑动。
 	if knockback_velocity.length() > 1.0:
@@ -60,6 +75,7 @@ func _physics_process(delta: float) -> void:
 
 		velocity = push_velocity
 		move_and_slide()
+		clamp_to_map_bounds()
 
 		if can_deal_impact:
 			check_knockback_impact(push_velocity)
@@ -86,6 +102,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_attacking:
 		move_and_slide()
+		clamp_to_map_bounds()
 		return
 
 	var direction := global_position.direction_to(
@@ -98,6 +115,7 @@ func _physics_process(delta: float) -> void:
 	sprite.flip_h = direction.x < 0
 
 	move_and_slide()
+	clamp_to_map_bounds()
 
 
 # ============================================================
@@ -268,5 +286,5 @@ func receive_knockback_impact(
 	# false：对方会被推开，但不会继续传播撞击伤害。
 	# true : 继续传播
 	# 先施加击退，使致死撞击也能让尸体滑动。
-	knockback(direction, force, true)
+	knockback(direction, force, false)
 	take_damage(damage)

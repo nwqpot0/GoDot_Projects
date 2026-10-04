@@ -21,6 +21,9 @@ var is_operating := false
 var dash_ready := true
 var is_dashing := false
 
+signal PLAYER_DIED
+var dead := false
+
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	platform_floor_layers = 0
@@ -57,6 +60,14 @@ func take_damage(damage):
 	health -= damage
 	health_changed.emit(health)
 	#print("Player HP:", health)
+	if health <= 0:
+		die()
+		
+func die():
+	if dead:
+		return 
+	dead = true
+	PLAYER_DIED.emit()
 	
 func move_animation():
 	if is_operating:
