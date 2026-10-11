@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c3jueib57ms5g"]
+
+[ext_resource type="Script" uid="uid://t1oc47g1mfy2" path="res://UMLCanvas/UMLClassNode.gd" id="1_v8gdw"]
+
+[node name="UmlClassNode" type="GraphNode" unique_id=91859368]
+custom_minimum_size = Vector2(240, 120)
+custom_maximum_size = Vector2(320, -1)
+offset_right = 240.0
+offset_bottom = 161.0
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_v8gdw")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=44887454]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1494141505]
+layout_mode = 2
+
+[node name="ClassNameLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1709866221]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "SomeClass"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=2061651426]
+visible = false
+layout_mode = 2
+
+[node name="PropertiesMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1425986745]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PropertiesContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PropertiesMargin" unique_id=5416750]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=630386124]
+layout_mode = 2
+
+[node name="MethodsMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1437080107]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MethodsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MethodsMargin" unique_id=2024549749]
+layout_mode = 2

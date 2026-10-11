@@ -1,0 +1,309 @@
+[gd_scene format=3 uid="uid://dqgn5yjcok888"]
+
+[ext_resource type="Script" uid="uid://cgvbnvh87reuy" path="res://UMLProject/MVVM/main.gd" id="1_bxf8x"]
+[ext_resource type="Script" uid="uid://dspjvutrf1fej" path="res://Toolbar/toolbar.gd" id="2_t7eil"]
+[ext_resource type="Script" uid="uid://bg514xs8lea20" path="res://Toolbar/file_menu.gd" id="3_i6pgd"]
+[ext_resource type="Script" uid="uid://dndupp1rn85v4" path="res://Toolbar/edit_menu.gd" id="4_d7ykj"]
+[ext_resource type="Script" uid="uid://g0csv0egoful" path="res://Toolbar/view_menu.gd" id="5_kkoxw"]
+[ext_resource type="Script" uid="uid://d33uynm8oqdhf" path="res://Toolbar/project_menu.gd" id="6_nmhy1"]
+[ext_resource type="Script" uid="uid://cmaajx705i0f1" path="res://UMLCanvas/uml_canvas.gd" id="7_o6u0n"]
+[ext_resource type="PackedScene" uid="uid://c3jueib57ms5g" path="res://UMLCanvas/UMLClassNode.tscn" id="8_jdja8"]
+[ext_resource type="Script" uid="uid://clikh1wbt23a8" path="res://Inspector/uml_inspector.gd" id="9_geq8p"]
+[ext_resource type="PackedScene" uid="uid://b4ew3v2ghp1aj" path="res://Inspector/inspector_class_element.tscn" id="10_5wuih"]
+[ext_resource type="Script" uid="uid://lyrcvhcng8qc" path="res://ProblemsPanel/problems_panel.gd" id="11_i6pgd"]
+[ext_resource type="Script" uid="uid://dw20pwpyowtxk" path="res://UMLProject/MVVM/issues_summary_button.gd" id="11_t7eil"]
+[ext_resource type="PackedScene" uid="uid://e2lqlb7vndsq" path="res://ProblemsPanel/problem_item.tscn" id="12_d7ykj"]
+[ext_resource type="PackedScene" uid="uid://dxcsxdt7vuwdt" path="res://Tests/DeveloperTools/DeveloperTools.tscn" id="14_kkoxw"]
+
+[node name="Main" type="Control" unique_id=1676225062]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bxf8x")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=396422866]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MainLayout" type="VBoxContainer" parent="MarginContainer" unique_id=235780879]
+layout_mode = 2
+
+[node name="ToolbarMargin" type="MarginContainer" parent="MarginContainer/MainLayout" unique_id=1557759854]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="MarginContainer/MainLayout/ToolbarMargin" unique_id=1010772471]
+layout_mode = 2
+script = ExtResource("2_t7eil")
+
+[node name="File" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=89057353]
+layout_mode = 2
+text = "File"
+script = ExtResource("3_i6pgd")
+
+[node name="Edit" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=247845577]
+layout_mode = 2
+text = "Edit"
+script = ExtResource("4_d7ykj")
+
+[node name="View" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=1663698118]
+layout_mode = 2
+text = "View
+"
+script = ExtResource("5_kkoxw")
+
+[node name="Project" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=1213327500]
+layout_mode = 2
+text = "Project
+"
+script = ExtResource("6_nmhy1")
+
+[node name="Spacer" type="Control" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=825874483]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SaveButton" type="Button" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=1454270873]
+layout_mode = 2
+text = "[Save]
+"
+
+[node name="ExportButton" type="Button" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=463137129]
+layout_mode = 2
+text = "[Export]
+"
+
+[node name="WorkplaceSplit" type="VSplitContainer" parent="MarginContainer/MainLayout" unique_id=635027125]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainMargin" type="MarginContainer" parent="MarginContainer/MainLayout/WorkplaceSplit" unique_id=589490677]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainSplit" type="HSplitContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin" unique_id=950466919]
+layout_mode = 2
+split_offsets = PackedInt32Array(240)
+split_offset = 240
+
+[node name="ProjectPanel" type="PanelContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit" unique_id=574271201]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/ProjectPanel" unique_id=1273679714]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/ProjectPanel/MarginContainer" unique_id=1484859698]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/ProjectPanel/MarginContainer/VBoxContainer" unique_id=558167775]
+layout_mode = 2
+text = "Project"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/ProjectPanel/MarginContainer/VBoxContainer" unique_id=1072190165]
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/ProjectPanel/MarginContainer/VBoxContainer" unique_id=757849830]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightSplit" type="HSplitContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit" unique_id=1773239194]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+split_offsets = PackedInt32Array(-240)
+split_offset = -240
+
+[node name="UMLCanvas" type="GraphEdit" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit" unique_id=1648644945]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("7_o6u0n")
+uml_class_scene = ExtResource("8_jdja8")
+
+[node name="InspectorPanel" type="PanelContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit" unique_id=2095077734]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+script = ExtResource("9_geq8p")
+inspector_class_scene = ExtResource("10_5wuih")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel" unique_id=373613958]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel/MarginContainer" unique_id=1677874982]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel/MarginContainer/VBoxContainer" unique_id=1435131775]
+layout_mode = 2
+text = "Inspector"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel/MarginContainer/VBoxContainer" unique_id=301688115]
+layout_mode = 2
+
+[node name="InspectorElements" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel/MarginContainer/VBoxContainer" unique_id=1244851360]
+layout_mode = 2
+
+[node name="ProblemsPanel" type="PanelContainer" parent="MarginContainer/MainLayout/WorkplaceSplit" unique_id=561173618]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("11_i6pgd")
+problem_item_scene = ExtResource("12_d7ykj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel" unique_id=1836070409]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer" unique_id=1313269800]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer" unique_id=663227404]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1623818576]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IssueList" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=162411677]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ProblemItem" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1332442588 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+
+[node name="ProblemItem2" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1679650499 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+
+[node name="ProblemItem3" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1163766992 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+
+[node name="ProblemItem4" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1340831179 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ProblemItem5" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1279073159 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ProblemItem6" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1594678340 instance=ExtResource("12_d7ykj")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=495813638]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="IssueCountLabel" type="Label" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/Header" unique_id=1624123798]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100 Issues"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/Header" unique_id=1340373922]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/Header" unique_id=839139933]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close"
+
+[node name="StatusMargin" type="MarginContainer" parent="MarginContainer/MainLayout" unique_id=888255481]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="StatusBar" type="HBoxContainer" parent="MarginContainer/MainLayout/StatusMargin" unique_id=1766121335]
+layout_mode = 2
+
+[node name="LeftStatus" type="HBoxContainer" parent="MarginContainer/MainLayout/StatusMargin/StatusBar" unique_id=537781891]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainLayout/StatusMargin/StatusBar/LeftStatus" unique_id=1501127625]
+layout_mode = 2
+text = "Status"
+
+[node name="IssueSummaryButton" type="Button" parent="MarginContainer/MainLayout/StatusMargin/StatusBar/LeftStatus" unique_id=1652001394]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Issue Summary"
+script = ExtResource("11_t7eil")
+
+[node name="Spacer" type="Control" parent="MarginContainer/MainLayout/StatusMargin/StatusBar" unique_id=1622528432]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightStatus" type="HBoxContainer" parent="MarginContainer/MainLayout/StatusMargin/StatusBar" unique_id=15715232]
+layout_mode = 2
+
+[node name="ClassCountLabel" type="Label" parent="MarginContainer/MainLayout/StatusMargin/StatusBar/RightStatus" unique_id=1598929415]
+layout_mode = 2
+text = "Classes
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RelationshipCountLabel" type="Label" parent="MarginContainer/MainLayout/StatusMargin/StatusBar/RightStatus" unique_id=131877450]
+layout_mode = 2
+text = "Relationships
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZoomLabel" type="Label" parent="MarginContainer/MainLayout/StatusMargin/StatusBar/RightStatus" unique_id=1528491206]
+layout_mode = 2
+text = "Zoom
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1131591330]
+visible = false
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.9647059, 0.92156863, 1)
+
+[node name="DeveloperTools" parent="." unique_id=1658660209 instance=ExtResource("14_kkoxw")]
+visible = false
+layout_mode = 0
+offset_left = 315.0
+offset_top = 120.0
+offset_right = 1595.0
+offset_bottom = 840.0

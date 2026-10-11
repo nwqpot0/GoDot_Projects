@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://e2lqlb7vndsq"]
+
+[ext_resource type="Script" uid="uid://cauh5x80xptu2" path="res://ProblemsPanel/problem_item.gd" id="1_ppw4p"]
+
+[node name="ProblemItem" type="PanelContainer" unique_id=1332442588]
+offset_right = 393.0
+offset_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_ppw4p")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=336690331]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=732036507]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SeverityLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2126778678]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "⚠"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1960570739]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MessageLabel" type="Label" parent="MarginContainer/HBoxContainer/Content" unique_id=34513281]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "Duplicate class name \"Player\""
+autowrap_mode = 3
+
+[node name="DetailLabel" type="Label" parent="MarginContainer/HBoxContainer/Content" unique_id=2113435521]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "2 classes in project scope"
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1271036582]
+layout_mode = 2
+
+[node name="LocateButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=975079412]
+layout_mode = 2
+text = "Locate →"

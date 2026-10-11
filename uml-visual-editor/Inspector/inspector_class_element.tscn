@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b4ew3v2ghp1aj"]
+
+[ext_resource type="Script" uid="uid://s47cgkeqqm0l" path="res://Inspector/inspector_class_element.gd" id="1_mu4rv"]
+
+[node name="InspectorClassElement" type="VBoxContainer" unique_id=629483486]
+custom_minimum_size = Vector2(220, 0)
+offset_right = 8.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_mu4rv")
+
+[node name="Name Section" type="VBoxContainer" parent="." unique_id=886993600]
+layout_mode = 2
+
+[node name="NameEdit" type="TextEdit" parent="Name Section" unique_id=74050171]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "ClassName
+"
+
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1831528509]
+layout_mode = 2
+
+[node name="Properies Section" type="VBoxContainer" parent="." unique_id=470665895]
+layout_mode = 2
+
+[node name="Properties Label" type="Label" parent="Properies Section" unique_id=349076798]
+layout_mode = 2
+text = "Properties"
+
+[node name="PropertiesContainer" type="VBoxContainer" parent="Properies Section" unique_id=1504528236]
+layout_mode = 2
+
+[node name="AddProperties Button" type="Button" parent="Properies Section" unique_id=1785572034]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Add Property"
+
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=2093018454]
+layout_mode = 2
+
+[node name="Methods Section" type="VBoxContainer" parent="." unique_id=1574285936]
+layout_mode = 2
+
+[node name="Methods Label" type="Label" parent="Methods Section" unique_id=2039249827]
+layout_mode = 2
+text = "Methods"
+
+[node name="MethodsContainer" type="VBoxContainer" parent="Methods Section" unique_id=2091920978]
+layout_mode = 2
+
+[node name="AddMethods Button" type="Button" parent="Methods Section" unique_id=2117290783]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Add Method"

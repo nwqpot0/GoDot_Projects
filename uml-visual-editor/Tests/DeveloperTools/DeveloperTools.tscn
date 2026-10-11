@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://dxcsxdt7vuwdt"]
+
+[ext_resource type="Script" uid="uid://d3e4ccmpq6w83" path="res://Tests/DeveloperTools/developer_tools.gd" id="1_gsw21"]
+[ext_resource type="Script" uid="uid://bti3h1ev5uqvo" path="res://Tests/DeveloperTools/console_panel.gd" id="2_kv0xd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rexl7"]
+
+[node name="DeveloperTools" type="PanelContainer" unique_id=1658660209]
+custom_minimum_size = Vector2(1280, 720)
+size_flags_vertical = 3
+script = ExtResource("1_gsw21")
+metadata/_custom_type_script = "uid://d3e4ccmpq6w83"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=688611428]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=125369761]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DevToolLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=136661342]
+layout_mode = 2
+text = "Developer Tools"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1121873816]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rexl7")
+
+[node name="ButtonsScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ButtonsPanel" unique_id=431465630]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer" unique_id=477965976]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer/MarginContainer" unique_id=215153441]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpawnProblemButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer/MarginContainer/VBoxContainer" unique_id=548571556]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Spawn Problem"
+
+[node name="SpawnManyProblemsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer/MarginContainer/VBoxContainer" unique_id=586269490]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Spawn Many Problems"
+
+[node name="ClearProblemsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer/MarginContainer/VBoxContainer" unique_id=491752858]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Clear Problems"
+
+[node name="SpawnUMLClassButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsPanel/ButtonsScrollContainer/MarginContainer/VBoxContainer" unique_id=119103438]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Spawn UML Class"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1549731283]
+layout_mode = 2
+
+[node name="ConsolePanel" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=512977240]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_kv0xd")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ConsolePanel" unique_id=843676196]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer" unique_id=566030730]
+layout_mode = 2
+
+[node name="ConsoleLabel" type="Label" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer/VBoxContainer" unique_id=193358176]
+layout_mode = 2
+text = "Console"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConsoleOutput" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer/VBoxContainer" unique_id=478401365]
+layout_mode = 2
+size_flags_vertical = 3
+text = "[hh:mm:ss] msg1
+[hh:mm:ss] msg2
+[hh:mm:ss] msg3
+[hh:mm:ss] msg4
+[hh:mm:ss] msg5
+[hh:mm:ss] msg6"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer/VBoxContainer" unique_id=368824827]
+layout_mode = 2
+
+[node name="ConsoleInput" type="LineEdit" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2050531047]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubmitButton" type="Button" parent="MarginContainer/VBoxContainer/ConsolePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=372041823]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Enter"
