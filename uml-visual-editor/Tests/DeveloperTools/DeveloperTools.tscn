@@ -1,9 +1,22 @@
 [gd_scene format=3 uid="uid://dxcsxdt7vuwdt"]
 
 [ext_resource type="Script" uid="uid://d3e4ccmpq6w83" path="res://Tests/DeveloperTools/developer_tools.gd" id="1_gsw21"]
-[ext_resource type="Script" uid="uid://bti3h1ev5uqvo" path="res://Tests/DeveloperTools/console_panel.gd" id="2_kv0xd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rexl7"]
+
+[sub_resource type="GDScript" id="GDScript_gsw21"]
+script/source = "extends PanelContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="DeveloperTools" type="PanelContainer" unique_id=1658660209]
 custom_minimum_size = Vector2(1280, 720)
@@ -76,7 +89,7 @@ layout_mode = 2
 [node name="ConsolePanel" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=512977240]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("2_kv0xd")
+script = SubResource("GDScript_gsw21")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ConsolePanel" unique_id=843676196]
 layout_mode = 2

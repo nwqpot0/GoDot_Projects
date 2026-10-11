@@ -3,6 +3,8 @@
 class_name ProjectManager
 extends RefCounted
 
+signal class_added(newUMLClass: UMLClass)
+
 var project: UMLProject
 
 enum ManagerAction{
@@ -35,4 +37,5 @@ func add_class(uml_class: UMLClass) -> ProjectManagerActionResult:
 		return ProjectManagerActionResult.failed("invalid class name")
 		
 	project.add_class(uml_class)
+	class_added.emit(uml_class)
 	return ProjectManagerActionResult.ok(uml_class, "class added")

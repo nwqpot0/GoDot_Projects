@@ -11,13 +11,9 @@ signal project_issues_changed(
 @onready var problems_panel: ProblemsPanel = $MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel
 @onready var developer_tools: DeveloperTools = $DeveloperTools
 
-var current_pm: ProjectManager
-var current_issues: Array[ProjectIssue]
+var current_session: ProjectSession
 
 func _ready() -> void:	# load a project 
-	current_pm = create_new_project()
-	uml_canvas.bind_project(current_pm.get_current_project())
-	
 	#toolbar related
 	toolbar.action_requested.connect(_on_toolbar_action_requested)
 	
@@ -35,12 +31,25 @@ func _ready() -> void:	# load a project
 	project_issues_changed.connect(problems_panel.set_issues)
 	problems_panel.close_requested.connect(_on_problems_close_requested)
 	
+	# Session Related
+	current_session = _create_new_project_session()
+	_bind_session_signals()
+	current_session.validate_project()
+	
+	# Developer's tools
 	_initialize_developer_tools()
 
 	problems_panel.visible = false
-	_revalidate_project(current_pm.get_current_project())
+
+# Bind all listeners of session signal to the session
+func _bind_session_signals():
+	current_session.project_issues_changed.connect(_on_project_issues_changed)
+	current_session.class_added.connect(uml_canvas._on_class_added)
 
 #region on signals received
+func _on_project_issues_changed(issues: Array[ProjectIssue]):
+	project_issues_changed.emit(issues)
+
 func _on_toolbar_action_requested(action: ToolbarAction.Type) -> void:
 	match action:
 		ToolbarAction.Type.ADD_CLASS:
@@ -59,14 +68,24 @@ func _on_issue_summary_pressed() -> void:
 
 func _on_problems_close_requested() -> void:
 	problems_panel.visible = false
+
+
 	
 #endregion
 
-#region project manager
-func create_new_project() -> ProjectManager:
-	var project := UMLProject.new()
-	var project_manager := ProjectManager.new(project)
-	return project_manager
+#region project session
+
+func generate_project_id() -> String:
+	var time_part := str(Time.get_unix_time_from_system())
+	var random_part := str(randi())
+
+	return "project_%s_%s" % [
+		time_part,
+		random_part
+	]
+
+func _create_new_project_session() -> ProjectSession:
+	return ProjectSession.new(UMLProject.new(generate_project_id()))
 
 
 func _add_class_request() -> void:
@@ -75,16 +94,10 @@ func _add_class_request() -> void:
 		"NewClass",
 		uml_canvas.get_view_center()
 	)
-	var result : ProjectManagerActionResult = current_pm.add_class(uml_class)
-	print(result.success, " ", result.message)
-	_revalidate_project(current_pm.get_current_project())
+	var result : ProjectManagerActionResult = current_session.add_class(uml_class)
+	#print(result.success, " ", result.message)
 #endregion
 
-#region validtor
-func _revalidate_project(project: UMLProject) -> void:
-	current_issues = ProjectValidator.validate(project)
-	project_issues_changed.emit(current_issues)
-#endregion
 
 #region developer tools
 func _initialize_developer_tools():
@@ -103,6 +116,7 @@ func _initialize_developer_tools():
 	developer_tools.spawn_uml_class_requested.connect(
 		_on_debug_spawn_uml_class
 	)
+	
 
 func _on_debug_spawn_problem() -> void:
 	# 调用真正的 ProblemsPanel API
@@ -112,8 +126,7 @@ func _on_debug_spawn_problem() -> void:
 		[],
 		"[Debug] A Test Problem"
 	)
-	current_issues.append(debugIssue)
-	project_issues_changed.emit(current_issues)
+	current_session.add_issue(debugIssue)
 
 
 func _on_debug_spawn_many_problems(amount: int) -> void:
@@ -124,16 +137,15 @@ func _on_debug_spawn_many_problems(amount: int) -> void:
 		"[Debug] A Test Problem"
 	)
 	for i in range(amount):
-		current_issues.append(debugIssue)
-	project_issues_changed.emit(current_issues)
+		current_session.add_issue(debugIssue)
 
 
 func _on_debug_clear_problems() -> void:
-	current_issues = []
-	project_issues_changed.emit(current_issues)
+	current_session.clear_issues()
 
 
 func _on_debug_spawn_uml_class(name: String) -> void:
-	pass
+	var uml_class : UMLClass = UMLClass.new(name, uml_canvas.get_view_center())
+	current_session.add_class(uml_class)
 
 #endregion

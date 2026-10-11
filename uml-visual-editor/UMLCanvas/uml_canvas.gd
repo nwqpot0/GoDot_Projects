@@ -11,10 +11,6 @@ var selected_classes: Array[UMLClass] = []
 func get_view_center() -> Vector2:
 	return scroll_offset + size / (2.0 * zoom)
 
-# 全量更新
-func bind_project(project: UMLProject) -> void:
-	project.class_added.connect(_on_class_added)
-
 func _on_class_added(uml_class: UMLClass) -> void:
 	#print("New class added with name %s and id %s\n" % [uml_class.name, uml_class.id])
 	var node: UMLClassNode = uml_class_scene.instantiate()

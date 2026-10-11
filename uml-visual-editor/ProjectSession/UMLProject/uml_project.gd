@@ -5,7 +5,10 @@ extends RefCounted
 var uml_classes: Array[UMLClass] = []
 var relationships: Array[UMLRelationship] = []
 var naming_pattern : RegEx = null
-signal class_added(newUMLClass: UMLClass)
+var project_id : String
+
+func _init(_project_id: String):
+	project_id = _project_id
 
 #region project class related
 
@@ -30,7 +33,6 @@ func has_class_name(name: String) -> bool:
 
 func add_class(uml_class: UMLClass) -> void:
 	uml_classes.append(uml_class)
-	class_added.emit(uml_class)
 #endregion
 
 func remove_class(uml_class: UMLClass) -> void:

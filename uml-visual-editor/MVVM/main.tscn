@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://dqgn5yjcok888"]
 
-[ext_resource type="Script" uid="uid://cgvbnvh87reuy" path="res://UMLProject/MVVM/main.gd" id="1_bxf8x"]
-[ext_resource type="Script" uid="uid://dspjvutrf1fej" path="res://Toolbar/toolbar.gd" id="2_t7eil"]
-[ext_resource type="Script" uid="uid://bg514xs8lea20" path="res://Toolbar/file_menu.gd" id="3_i6pgd"]
-[ext_resource type="Script" uid="uid://dndupp1rn85v4" path="res://Toolbar/edit_menu.gd" id="4_d7ykj"]
-[ext_resource type="Script" uid="uid://g0csv0egoful" path="res://Toolbar/view_menu.gd" id="5_kkoxw"]
-[ext_resource type="Script" uid="uid://d33uynm8oqdhf" path="res://Toolbar/project_menu.gd" id="6_nmhy1"]
-[ext_resource type="Script" uid="uid://cmaajx705i0f1" path="res://UMLCanvas/uml_canvas.gd" id="7_o6u0n"]
-[ext_resource type="PackedScene" uid="uid://c3jueib57ms5g" path="res://UMLCanvas/UMLClassNode.tscn" id="8_jdja8"]
-[ext_resource type="Script" uid="uid://clikh1wbt23a8" path="res://Inspector/uml_inspector.gd" id="9_geq8p"]
-[ext_resource type="PackedScene" uid="uid://b4ew3v2ghp1aj" path="res://Inspector/inspector_class_element.tscn" id="10_5wuih"]
-[ext_resource type="Script" uid="uid://lyrcvhcng8qc" path="res://ProblemsPanel/problems_panel.gd" id="11_i6pgd"]
-[ext_resource type="Script" uid="uid://dw20pwpyowtxk" path="res://UMLProject/MVVM/issues_summary_button.gd" id="11_t7eil"]
-[ext_resource type="PackedScene" uid="uid://e2lqlb7vndsq" path="res://ProblemsPanel/problem_item.tscn" id="12_d7ykj"]
-[ext_resource type="PackedScene" uid="uid://dxcsxdt7vuwdt" path="res://Tests/DeveloperTools/DeveloperTools.tscn" id="14_kkoxw"]
+[ext_resource type="Script" uid="uid://cgvbnvh87reuy" path="res://MVVM/main.gd" id="1_snkwp"]
+[ext_resource type="Script" uid="uid://dspjvutrf1fej" path="res://Toolbar/toolbar.gd" id="2_up076"]
+[ext_resource type="Script" uid="uid://bg514xs8lea20" path="res://Toolbar/file_menu.gd" id="3_v78v4"]
+[ext_resource type="Script" uid="uid://dndupp1rn85v4" path="res://Toolbar/edit_menu.gd" id="4_6tdk3"]
+[ext_resource type="Script" uid="uid://g0csv0egoful" path="res://Toolbar/view_menu.gd" id="5_xl30y"]
+[ext_resource type="Script" uid="uid://d33uynm8oqdhf" path="res://Toolbar/project_menu.gd" id="6_dpuxx"]
+[ext_resource type="Script" uid="uid://cmaajx705i0f1" path="res://UMLCanvas/uml_canvas.gd" id="7_wi37c"]
+[ext_resource type="PackedScene" uid="uid://c3jueib57ms5g" path="res://UMLCanvas/UMLClassNode.tscn" id="8_8yakw"]
+[ext_resource type="Script" uid="uid://clikh1wbt23a8" path="res://Inspector/uml_inspector.gd" id="9_bck0q"]
+[ext_resource type="PackedScene" uid="uid://b4ew3v2ghp1aj" path="res://Inspector/inspector_class_element.tscn" id="10_pnrfg"]
+[ext_resource type="Script" uid="uid://lyrcvhcng8qc" path="res://ProblemsPanel/problems_panel.gd" id="11_knllj"]
+[ext_resource type="PackedScene" uid="uid://e2lqlb7vndsq" path="res://ProblemsPanel/problem_item.tscn" id="12_ip8c8"]
+[ext_resource type="Script" uid="uid://dw20pwpyowtxk" path="res://MVVM/issues_summary_button.gd" id="13_nc565"]
+[ext_resource type="PackedScene" uid="uid://dxcsxdt7vuwdt" path="res://Tests/DeveloperTools/DeveloperTools.tscn" id="14_cs13g"]
 
 [node name="Main" type="Control" unique_id=1676225062]
 layout_mode = 3
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bxf8x")
+script = ExtResource("1_snkwp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=396422866]
 layout_mode = 1
@@ -45,29 +45,29 @@ layout_mode = 2
 
 [node name="Toolbar" type="HBoxContainer" parent="MarginContainer/MainLayout/ToolbarMargin" unique_id=1010772471]
 layout_mode = 2
-script = ExtResource("2_t7eil")
+script = ExtResource("2_up076")
 
 [node name="File" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=89057353]
 layout_mode = 2
 text = "File"
-script = ExtResource("3_i6pgd")
+script = ExtResource("3_v78v4")
 
 [node name="Edit" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=247845577]
 layout_mode = 2
 text = "Edit"
-script = ExtResource("4_d7ykj")
+script = ExtResource("4_6tdk3")
 
 [node name="View" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=1663698118]
 layout_mode = 2
 text = "View
 "
-script = ExtResource("5_kkoxw")
+script = ExtResource("5_xl30y")
 
 [node name="Project" type="MenuButton" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=1213327500]
 layout_mode = 2
 text = "Project
 "
-script = ExtResource("6_nmhy1")
+script = ExtResource("6_dpuxx")
 
 [node name="Spacer" type="Control" parent="MarginContainer/MainLayout/ToolbarMargin/Toolbar" unique_id=825874483]
 layout_mode = 2
@@ -136,14 +136,14 @@ split_offset = -240
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("7_o6u0n")
-uml_class_scene = ExtResource("8_jdja8")
+script = ExtResource("7_wi37c")
+uml_class_scene = ExtResource("8_8yakw")
 
 [node name="InspectorPanel" type="PanelContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit" unique_id=2095077734]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
-script = ExtResource("9_geq8p")
-inspector_class_scene = ExtResource("10_5wuih")
+script = ExtResource("9_bck0q")
+inspector_class_scene = ExtResource("10_pnrfg")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/MainMargin/MainSplit/RightSplit/InspectorPanel" unique_id=373613958]
 layout_mode = 2
@@ -169,8 +169,8 @@ layout_mode = 2
 [node name="ProblemsPanel" type="PanelContainer" parent="MarginContainer/MainLayout/WorkplaceSplit" unique_id=561173618]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("11_i6pgd")
-problem_item_scene = ExtResource("12_d7ykj")
+script = ExtResource("11_knllj")
+problem_item_scene = ExtResource("12_ip8c8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel" unique_id=1836070409]
 layout_mode = 2
@@ -196,24 +196,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="ProblemItem" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1332442588 instance=ExtResource("12_d7ykj")]
+[node name="ProblemItem" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1332442588 instance=ExtResource("12_ip8c8")]
 layout_mode = 2
 
-[node name="ProblemItem2" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1679650499 instance=ExtResource("12_d7ykj")]
+[node name="ProblemItem2" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1679650499 instance=ExtResource("12_ip8c8")]
 layout_mode = 2
 
-[node name="ProblemItem3" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1163766992 instance=ExtResource("12_d7ykj")]
+[node name="ProblemItem3" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1163766992 instance=ExtResource("12_ip8c8")]
 layout_mode = 2
 
-[node name="ProblemItem4" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1340831179 instance=ExtResource("12_d7ykj")]
-layout_mode = 2
-size_flags_vertical = 2
-
-[node name="ProblemItem5" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1279073159 instance=ExtResource("12_d7ykj")]
+[node name="ProblemItem4" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1340831179 instance=ExtResource("12_ip8c8")]
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="ProblemItem6" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1594678340 instance=ExtResource("12_d7ykj")]
+[node name="ProblemItem5" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1279073159 instance=ExtResource("12_ip8c8")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ProblemItem6" parent="MarginContainer/MainLayout/WorkplaceSplit/ProblemsPanel/VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/IssueList" unique_id=1594678340 instance=ExtResource("12_ip8c8")]
 layout_mode = 2
 size_flags_vertical = 2
 
@@ -259,7 +259,7 @@ text = "Status"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Issue Summary"
-script = ExtResource("11_t7eil")
+script = ExtResource("13_nc565")
 
 [node name="Spacer" type="Control" parent="MarginContainer/MainLayout/StatusMargin/StatusBar" unique_id=1622528432]
 layout_mode = 2
@@ -300,7 +300,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1254902, 0.9647059, 0.92156863, 1)
 
-[node name="DeveloperTools" parent="." unique_id=1658660209 instance=ExtResource("14_kkoxw")]
+[node name="DeveloperTools" parent="." unique_id=1658660209 instance=ExtResource("14_cs13g")]
 visible = false
 layout_mode = 0
 offset_left = 315.0

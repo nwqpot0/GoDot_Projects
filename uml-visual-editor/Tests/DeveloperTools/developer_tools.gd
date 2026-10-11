@@ -45,7 +45,8 @@ func _ready() -> void:
 	_connect_console()
 
 	console_output.scroll_following = true
-
+	
+	clear_log()
 	log_info("Developer Tools initialized.")
 	log_info("Type 'help' for available commands.")
 
@@ -165,17 +166,17 @@ func _execute_command(command: String) -> void:
 
 			log_info("Clear Problems requested.")
 
-		#"spawn_class":
-			#var class_name := "DebugClass"
-#
-			#if parts.size() >= 2:
-				#class_name = parts[1]
-#
-			#spawn_uml_class_requested.emit(class_name)
-#
-			#log_info(
-				#"Spawn UML Class requested: %s" % class_name
-			#)
+		"spawn_class":
+			var name := "DebugClass"
+
+			if parts.size() >= 2:
+				name = parts[1]
+
+			spawn_uml_class_requested.emit(name)
+
+			log_info(
+				"Spawn UML Class requested: %s" % name
+			)
 
 		"clear":
 			console_output.clear()
@@ -218,6 +219,9 @@ clear
 # Logging
 # =========================================================
 #region
+func clear_log():
+	console_output.clear()
+	
 func log_raw(message: String) -> void:
 	console_output.append_text(message + "\n")
 
